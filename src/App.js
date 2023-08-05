@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import FirstStep from "./components/mainforms/firstStep";
+import NavBar from "./components/navBarComponents/navBar";
+import SecondStep from "./components/mainforms/secondStep";
+import ThirdStep from "./components/mainforms/thirdStep";
+import Summary from "./components/mainforms/summary";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <main className="flex absolute top-0 bottom-0 w-full p-8">
+        <nav className="bg-sidebarDesktop basis-1/5 bg-no-repeat bg-cover rounded-xl">
+          <NavBar />
+        </nav>
+        <section className="px-20 py-10">
+          <Routes>
+            <Route path="/" element={<FirstStep />} />
+            <Route path="/second" element={<SecondStep />} />
+            <Route path="/third" element={<ThirdStep />} />
+            <Route path="/summary" element={<Summary />} />
+          </Routes>
+        </section>
+      </main>
+    </Router>
   );
 }
 
