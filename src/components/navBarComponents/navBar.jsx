@@ -13,7 +13,7 @@ export default function NavBar() {
   return (
     <aside className="p-12 flex flex-col gap-10">
       {navs.map((nav, i) => (
-        <Link to={nav.link}>
+        <Link key={nav.stepname} to={nav.link}>
           <Navs stepNo={i + 1} stepTitle={nav.stepname} />
         </Link>
       ))}
