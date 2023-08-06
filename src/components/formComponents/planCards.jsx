@@ -12,7 +12,7 @@ export default function PlanCards({
     <button
       type="button"
       className={`w-full flex flex-row xsm:flex-col gap-x-4 border border-Lightgray p-3 lg:p-4 rounded-lg hover:border-Purplish transition duration-300 ease-in-out ${
-        isActive ? "bg-Magnolia border-Purplish" : "bg-none border-Lightgray"
+        isActive ? "bg-Alabaster border-Purplish" : "bg-none border-Lightgray"
       }`}
       onClick={clickEvent}
     >

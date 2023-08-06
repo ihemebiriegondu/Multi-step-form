@@ -69,7 +69,7 @@ export default function SecondStep() {
             />
           ))}
         </div>
-        <div className="flex justify-center mt-8 bg-Magnolia p-2 rounded-lg gap-6">
+        <div className="flex justify-center mt-8 bg-Alabaster p-2 rounded-lg gap-6">
           <p className="text-Coolgray font-medium text-Marine" id="monthly">
             Monthly
           </p>
