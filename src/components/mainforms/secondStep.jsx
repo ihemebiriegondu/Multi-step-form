@@ -10,9 +10,11 @@ import pro from "../../assets/icons/icon-pro.svg";
 
 export default function SecondStep() {
   const navigate = useNavigate();
+  let Plans = JSON.parse(sessionStorage.getItem("plans"));
 
-  const [buttonValue, setButtonValue] = useState("");
-  const [subType, setSubType] = useState("Monthly");
+  const [buttonValue, setButtonValue] = useState(Plans.title || '');
+  const [buttonAmount, setButtonAmount] = useState(Plans.amount || '');
+  const [subType, setSubType] = useState(Plans.subscription || "Monthly");
 
   const cards = [
     { icon: arcard, title: "Arcade", amount: "$9/mo" },
@@ -23,7 +25,14 @@ export default function SecondStep() {
   const saveStep = (e) => {
     e.preventDefault();
     if (buttonValue !== "") {
-      navigate('/third')
+      const planObj = {
+        title: buttonValue,
+        amount: buttonAmount,
+        subscription: subType,
+      };
+
+      sessionStorage.setItem("plans", JSON.stringify(planObj));
+      navigate("/third");
     }
   };
 
@@ -45,6 +54,9 @@ export default function SecondStep() {
               amount={card.amount}
               clickEvent={() => {
                 setButtonValue(card.title);
+                setButtonAmount(
+                  parseFloat(card.amount.replace(/[^\d\.]*/g, ""))
+                );
               }}
               isActive={buttonValue === card.title}
             />
@@ -59,10 +71,8 @@ export default function SecondStep() {
               type="checkbox"
               value=""
               className="sr-only peer"
+              checked={subType === 'Yearly' || false}
               onChange={(e) => {
-                document.querySelectorAll(".monthfree").forEach((card) => {
-                  card.classList.toggle("invisible");
-                });
                 if (e.target.checked) {
                   document
                     .getElementById("yearly")
@@ -70,6 +80,9 @@ export default function SecondStep() {
                   document
                     .getElementById("monthly")
                     .classList.remove("font-medium", "text-Marine");
+                    document.querySelectorAll(".monthfree").forEach((card) => {
+                      card.classList.remove("invisible");
+                    });
                   setSubType("Yearly");
                 } else {
                   document
@@ -79,6 +92,9 @@ export default function SecondStep() {
                     .getElementById("yearly")
                     .classList.remove("font-medium", "text-Marine");
                   setSubType("Monthly");
+                  document.querySelectorAll(".monthfree").forEach((card) => {
+                    card.classList.add("invisible");
+                  });
                 }
               }}
             />
