@@ -7,11 +7,13 @@ import PlanCards from "../formComponents/planCards";
 import arcard from "../../assets/icons/icon-arcade.svg";
 import adva from "../../assets/icons/icon-advanced.svg";
 import pro from "../../assets/icons/icon-pro.svg";
+import ErrorDiv from "../formComponents/errorDiv";
 
 export default function SecondStep() {
   const navigate = useNavigate();
   let Plans = JSON.parse(sessionStorage.getItem("plans"));
 
+  const [noselection, setNoselection] = useState(false);
   const [buttonValue, setButtonValue] = useState(Plans.title || "");
   const [buttonAmount, setButtonAmount] = useState(Plans.amount || "");
   const [subType, setSubType] = useState(Plans.subscription || "Monthly");
@@ -41,6 +43,8 @@ export default function SecondStep() {
 
       sessionStorage.setItem("plans", JSON.stringify(planObj));
       navigate("/third");
+    } else {
+      setNoselection(true)
     }
   };
 
@@ -133,6 +137,7 @@ export default function SecondStep() {
           </button>
         </div>
       </form>
+      {noselection && <ErrorDiv />}
     </article>
   );
 }

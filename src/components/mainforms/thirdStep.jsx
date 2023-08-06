@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AddOnCheckbox from "../formComponents/addOnCheckbox";
+import ErrorDiv from "../formComponents/errorDiv";
 
 export default function ThirdStep() {
   const navigate = useNavigate();
   let allAddOn = JSON.parse(sessionStorage.getItem("addOns"));
   const planSub = JSON.parse(sessionStorage.getItem("plans")).subscription;
+
+  const [noselection, setNoselection] = useState(false);
 
   const addOns = [
     {
@@ -44,8 +47,12 @@ export default function ThirdStep() {
         values.push(singleAddon);
       }
     });
-    sessionStorage.setItem("addOns", JSON.stringify(values));
-    navigate("/summary");
+    if (values.length === 0) {
+      setNoselection(true)
+    } else {
+      sessionStorage.setItem("addOns", JSON.stringify(values));
+      navigate("/summary");
+    }
   };
 
   return (
@@ -86,6 +93,7 @@ export default function ThirdStep() {
           </button>
         </div>
       </form>
+      {noselection && <ErrorDiv />}
     </article>
   );
 }
