@@ -6,6 +6,7 @@ import ThirdStep from "./components/mainforms/thirdStep";
 import Summary from "./components/mainforms/summary";
 
 function App() {
+
   return (
     <Router>
       <main className="flex absolute top-0 bottom-0 w-full p-8">
@@ -13,7 +14,6 @@ function App() {
           <NavBar />
         </nav>
         <section className="px-20 py-10 basis-4/5">
-          {/*remove thises later */}
           <Routes>
             <Route path="/" element={<FirstStep />} />
             <Route path="/second" element={<SecondStep />} />
