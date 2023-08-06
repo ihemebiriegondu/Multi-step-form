@@ -6,7 +6,9 @@ import ThirdStep from "./components/mainforms/thirdStep";
 import Summary from "./components/mainforms/summary";
 
 function App() {
-
+  sessionStorage.setItem("plans", JSON.stringify({}));
+  sessionStorage.setItem("addOns", JSON.stringify([]));
+  
   return (
     <Router>
       <main className="flex absolute top-0 bottom-0 w-full p-8">
