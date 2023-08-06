@@ -12,14 +12,22 @@ export default function SecondStep() {
   const navigate = useNavigate();
   let Plans = JSON.parse(sessionStorage.getItem("plans"));
 
-  const [buttonValue, setButtonValue] = useState(Plans.title || '');
-  const [buttonAmount, setButtonAmount] = useState(Plans.amount || '');
+  const [buttonValue, setButtonValue] = useState(Plans.title || "");
+  const [buttonAmount, setButtonAmount] = useState(Plans.amount || "");
   const [subType, setSubType] = useState(Plans.subscription || "Monthly");
 
+  const getSubscriptionAmount = (sub) => {
+    if (subType === "Monthly") {
+      return sub;
+    } else if (subType === "Yearly") {
+      return sub * 10;
+    }
+  };
+
   const cards = [
-    { icon: arcard, title: "Arcade", amount: "$9/mo" },
-    { icon: adva, title: "Advanced", amount: "$12/mo" },
-    { icon: pro, title: "Pro", amount: "$15/mo" },
+    { icon: arcard, title: "Arcade", amount: 9 },
+    { icon: adva, title: "Advanced", amount: 12 },
+    { icon: pro, title: "Pro", amount: 15 },
   ];
 
   const saveStep = (e) => {
@@ -51,12 +59,11 @@ export default function SecondStep() {
               key={card.title}
               title={card.title}
               icon={card.icon}
-              amount={card.amount}
+              amount={getSubscriptionAmount(card.amount)}
+              subs={subType}
               clickEvent={() => {
                 setButtonValue(card.title);
-                setButtonAmount(
-                  parseFloat(card.amount.replace(/[^\d\.]*/g, ""))
-                );
+                setButtonAmount(getSubscriptionAmount(card.amount));
               }}
               isActive={buttonValue === card.title}
             />
@@ -71,7 +78,7 @@ export default function SecondStep() {
               type="checkbox"
               value=""
               className="sr-only peer"
-              checked={subType === 'Yearly' || false}
+              checked={subType === "Yearly" || false}
               onChange={(e) => {
                 if (e.target.checked) {
                   document
@@ -80,9 +87,12 @@ export default function SecondStep() {
                   document
                     .getElementById("monthly")
                     .classList.remove("font-medium", "text-Marine");
-                    document.querySelectorAll(".monthfree").forEach((card) => {
-                      card.classList.remove("invisible");
-                    });
+                  document.querySelectorAll(".monthfree").forEach((card) => {
+                    card.classList.remove("invisible");
+                  });
+                  if (!buttonAmount % 10 === 0) {
+                    setButtonAmount(buttonAmount * 10);
+                  }
                   setSubType("Yearly");
                 } else {
                   document
@@ -91,10 +101,13 @@ export default function SecondStep() {
                   document
                     .getElementById("yearly")
                     .classList.remove("font-medium", "text-Marine");
-                  setSubType("Monthly");
                   document.querySelectorAll(".monthfree").forEach((card) => {
                     card.classList.add("invisible");
                   });
+                  if (buttonAmount % 10 === 0) {
+                    setButtonAmount(buttonAmount / 10);
+                  }
+                  setSubType("Monthly");
                 }
               }}
             />

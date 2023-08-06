@@ -1,28 +1,29 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AddOnCheckbox from "../formComponents/addOnCheckbox";
 
 export default function ThirdStep() {
   const navigate = useNavigate();
-  const [AddOns, setAddOns] = useState([]);
+  let allAddOn = JSON.parse(sessionStorage.getItem("addOns"));
+  const planSub = JSON.parse(sessionStorage.getItem("plans")).subscription;
 
   const addOns = [
     {
       title: "Online service",
       info: "Access to multiplayer games",
-      amount: "+$1/mo",
+      amount: 1,
       id: "online",
     },
     {
       title: "Larger storage",
       info: "Extra 1TB of cloud save",
-      amount: "+$2/mo",
+      amount: 2,
       id: "storage",
     },
     {
       title: "Customizable Profile",
       info: "Custom theme on your profile",
-      amount: "+$2/mo",
+      amount: 2,
       id: "profile",
     },
   ];
@@ -35,14 +36,16 @@ export default function ThirdStep() {
     addOnValues.forEach((value) => {
       if (value.checked) {
         let singleAddon = {};
-        singleAddon.title = value.parentElement.children[1].children[0].children[0].textContent;
-        singleAddon.amount = value.parentElement.children[1].children[1].textContent;
+        singleAddon.title =
+          value.parentElement.children[1].children[0].children[0].textContent;
+        singleAddon.amount =
+          value.parentElement.children[1].children[1].textContent;
 
-        values.push(singleAddon)
+        values.push(singleAddon);
       }
     });
-    setAddOns(values)
-    navigate('/summary')
+    sessionStorage.setItem("addOns", JSON.stringify(values));
+    navigate("/summary");
   };
 
   return (
@@ -60,7 +63,10 @@ export default function ThirdStep() {
               key={addOn.id}
               title={addOn.title}
               info={addOn.info}
-              amount={addOn.amount}
+              amount={planSub === "Monthly" ? addOn.amount : addOn.amount * 10}
+              isChecked={allAddOn.some(
+                (addOns) => addOns.title === addOn.title
+              )}
             />
           ))}
         </div>

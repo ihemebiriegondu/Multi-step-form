@@ -4,6 +4,7 @@ export default function PlanCards({
   icon,
   title,
   amount,
+  subs,
   clickEvent,
   isActive,
 }) {
@@ -20,7 +21,7 @@ export default function PlanCards({
       </div>
       <div className="text-start">
         <h6 className="font-medium">{title}</h6>
-        <p className="text-Coolgray">{amount}</p>
+        <p className="text-Coolgray">${amount}/{subs === 'Monthly' ? 'mo' : 'yr'}</p>
         <p className="text-sm invisible monthfree">2 months free</p>
       </div>
     </button>
