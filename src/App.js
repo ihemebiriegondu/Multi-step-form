@@ -12,7 +12,8 @@ function App() {
         <nav className="bg-sidebarDesktop basis-1/5 bg-no-repeat bg-cover rounded-xl">
           <NavBar />
         </nav>
-        <section className="px-20 py-10">
+        <section className="px-20 py-10 basis-4/5">
+          {/*remove thises later */}
           <Routes>
             <Route path="/" element={<FirstStep />} />
             <Route path="/second" element={<SecondStep />} />
