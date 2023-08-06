@@ -5,14 +5,14 @@ import { useNavigate } from "react-router-dom";
 export default function FirstStep() {
   const navigate = useNavigate();
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [number, setNumber] = useState("");
-  const [emailMatch, setEmailMatch] = useState(false);
-
   const regex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+  const [name, setName] = useState(sessionStorage.getItem('name') || '');
+  const [email, setEmail] = useState(sessionStorage.getItem('email') || '');
+  const [number, setNumber] = useState(sessionStorage.getItem('number') || '');
+  const [emailMatch, setEmailMatch] = useState(true);
+  
   const saveStep = (e) => {
     e.preventDefault();
     const inputFields = document.querySelectorAll(".inputF");
@@ -34,6 +34,10 @@ export default function FirstStep() {
     });
 
     if (email !== "" && emailMatch === true && name !== "" && number !== "") {
+      sessionStorage.setItem("name", name);
+      sessionStorage.setItem("email", email);
+      sessionStorage.setItem("number", number);
+
       navigate("/second");
     }
   };
@@ -64,6 +68,7 @@ export default function FirstStep() {
               placeholder="e.g. Stephen King"
               type="text"
               id="name"
+              value={name || ''}
               className="inputF w-full outline-none border border-Lightgray p-2 rounded-md focus:border-Purplish transition duration-300 ease-in-out"
               onChange={(e) => {
                 setName(e.target.value);
@@ -90,6 +95,7 @@ export default function FirstStep() {
               placeholder="e.g. stephenking@lorem.com"
               type="email"
               id="email"
+              value={email || ''}
               className="inputF w-full outline-none border border-Lightgray p-2 rounded-md focus:border-Purplish transition duration-300 ease-in-out"
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -97,7 +103,14 @@ export default function FirstStep() {
                 e.target.previousElementSibling.children[1].classList.add(
                   "invisible"
                 );
-                if (e.target.value.match(regex)) {
+                if (email.match(regex)) {
+                  setEmailMatch(true);
+                } else {
+                  setEmailMatch(false);
+                }
+              }}
+              onBlur={() => {
+                if (email.match(regex)) {
                   setEmailMatch(true);
                 } else {
                   setEmailMatch(false);
@@ -121,6 +134,7 @@ export default function FirstStep() {
               placeholder="e.g. +1 234 567 890"
               type="tel"
               id="number"
+              value={number || ''}
               className="inputF w-full outline-none border border-Lightgray p-2 rounded-md focus:border-Purplish transition duration-300 ease-in-out"
               onChange={(e) => {
                 setNumber(e.target.value);
