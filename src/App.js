@@ -11,7 +11,7 @@ function App() {
   
   return (
     <Router>
-      <main className="flex absolute top-0 bottom-0 w-full p-4 lg:p-8 md:pb-4 lg:pb-8">
+      <main className="main flex absolute top-0 bottom-0 w-full p-4 lg:p-8 md:pb-4 lg:pb-8">
         <nav className="bg-sidebarMobile md:bg-sidebarDesktop pt-2 sm:pt-10 pb-32 md:pb-0 md:pt-0 absolute top-0 left-0 right-0 md:static md:basis-1/3 xlg:basis-1/4 2xl:basis-1/5 bg-no-repeat bg-cover md:rounded-xl">
           <NavBar />
         </nav>
