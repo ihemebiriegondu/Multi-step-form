@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AddOnCheckbox from "../formComponents/addOnCheckbox";
 
 export default function ThirdStep() {
+  const navigate = useNavigate();
   const [AddOns, setAddOns] = useState([]);
 
   const addOns = [
@@ -41,6 +42,7 @@ export default function ThirdStep() {
       }
     });
     setAddOns(values)
+    navigate('/summary')
   };
 
   return (
