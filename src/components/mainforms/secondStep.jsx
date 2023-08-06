@@ -53,7 +53,7 @@ export default function SecondStep() {
         </p>
       </div>
       <form onSubmit={(e) => saveStep(e)}>
-        <div className="flex justify-between gap-6">
+        <div className="flex justify-between gap-4 lg:gap-6 flex-col xsm:flex-row">
           {cards.map((card) => (
             <PlanCards
               key={card.title}

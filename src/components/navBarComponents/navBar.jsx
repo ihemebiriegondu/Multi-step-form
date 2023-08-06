@@ -14,7 +14,7 @@ export default function NavBar() {
   ];
 
   return (
-    <aside className="p-12 flex flex-col gap-10">
+    <aside className="p-6 md:p-7 lg:p-12 flex flex-row md:flex-col gap-10 md:justify-start justify-center">
       {navs.map((nav, i) => (
         <Navs
           key={nav.stepname}

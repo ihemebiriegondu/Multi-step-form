@@ -11,12 +11,12 @@ export default function PlanCards({
   return (
     <button
       type="button"
-      className={`w-full border border-Lightgray p-4 rounded-lg hover:border-Purplish transition duration-300 ease-in-out ${
+      className={`w-full flex flex-row xsm:flex-col gap-x-4 border border-Lightgray p-3 lg:p-4 rounded-lg hover:border-Purplish transition duration-300 ease-in-out ${
         isActive ? "bg-Magnolia border-Purplish" : "bg-none border-Lightgray"
       }`}
       onClick={clickEvent}
     >
-      <div className="mb-12 mt-3">
+      <div className="xsm:mb-12 mt-3">
         <img src={icon} alt="arcd imag" />
       </div>
       <div className="text-start">

@@ -48,7 +48,7 @@ export default function Summary() {
         onSubmit={(e) => submitForms(e)}
         className={`${isThankYou ? "hidden" : "block"}`}
       >
-        <div className="bg-Magnolia px-6 rounded-lg">
+        <div className="bg-Magnolia px-5 xsm:px-6 rounded-lg">
           <div className="flex justify-between items-center py-6">
             <div className="">
               <h6 className="font-medium">
