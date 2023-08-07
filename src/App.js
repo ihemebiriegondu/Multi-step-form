@@ -11,7 +11,7 @@ function App() {
 
   return (
     <Router>
-      <main className="main bg-Magnolia relative md:bg-white h-full flex w-full p-4 lg:p-8 mb-6 overflow-x-hidden">
+      <main className="main bg-Magnolia relative md:bg-white h-full flex w-full p-4 lg:p-8 overflow-x-hidden">
         <nav className="md:h-full bg-sidebarMobile md:bg-sidebarDesktop pt-2 sm:pt-10 pb-32 md:pb-0 md:pt-0 absolute md:static top-0 left-0 right-0 md:static md:basis-1/3 xlg:basis-1/4 2xl:basis-1/5 bg-no-repeat bg-cover md:rounded-xxl">
           <NavBar />
         </nav>
