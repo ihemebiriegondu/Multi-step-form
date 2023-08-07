@@ -15,7 +15,7 @@ function App() {
         <nav className="md:h-full bg-sidebarMobile md:bg-sidebarDesktop pt-2 sm:pt-10 pb-32 md:pb-0 md:pt-0 absolute md:static top-0 left-0 right-0 md:static md:basis-1/3 xlg:basis-1/4 2xl:basis-1/5 bg-no-repeat bg-cover md:rounded-xxl">
           <NavBar />
         </nav>
-        <section className="px-4 xsm:px-6 sm:px-10 lg:px-16 xlg:px-20 py-10 bg-white absolute top-28 sm:top-48 left-2 xsm:left-4 sm:left-10 right-2 xsm:right-4 sm:right-10 shadow md:shadow-none md:static rounded-xl md:rounded-none md:basis-2/3 xlg:basis-3/4 2xl:basis-4/5">
+        <section className="px-4 xsm:px-6 sm:px-10 lg:px-16 xlg:px-20 py-10 bg-white absolute top-28 sm:top-48 bottom-2 overflow-y-scroll left-2 xsm:left-4 sm:left-10 right-2 xsm:right-4 sm:right-10 shadow md:shadow-none md:static rounded-xl md:rounded-none md:basis-2/3 xlg:basis-3/4 2xl:basis-4/5">
           <Routes>
             <Route path="/" element={<FirstStep />} />
             <Route path="/second" element={<SecondStep />} />
