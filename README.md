@@ -36,7 +36,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: https://github.com/ihemebiriegondu/Multi-step-form.git
+- Solution URL: https://www.frontendmentor.io/solutions/multi-step-form---reactjs-SvQUEcMRuN
 - Live Site URL: https://multitaskform.vercel.app/
 
 ### Built with
